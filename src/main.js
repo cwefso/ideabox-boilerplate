@@ -21,17 +21,18 @@ ideaGallery.addEventListener('click', function(event) {
   event.preventDefault();
   var activeStarBtn = document.querySelector('.star-active');
   var inactiveStarBtn = document.querySelector('.star-inactive');
-  var createdIdeaCard = document.querySelectorAll('.box');
-  var deleteButton = document.querySelectorAll('.delete').forEach(item => {
-    item.addEventListener('click', event => {
-      ideaGallery.removeChild(createdIdeaCard);
-    })
-  })
 
-  // if (event.target.className === 'delete') {
-  //   event.target.addEventListener('click', deleteFromArray);
-  //   event.target.addEventListener('click', deleteFromDOM);
-  // }
+  // var createdIdeaCard = document.querySelectorAll('.box');
+  // var deleteButton = document.querySelectorAll('.delete').forEach(item => {
+  //   item.addEventListener('click', event => {
+  //     ideaGallery.remove(createdIdeaCard);
+  //   })
+  // })
+  if (event.target.className === 'delete') {
+    deleteFromArray(event);
+    deleteFromDOM(event);
+  }
+
   if (event.target.className === 'star-active') {
     inactiveStarBtn.classList.remove('hide');
     activeStarBtn.classList.add('hide');
@@ -42,23 +43,24 @@ ideaGallery.addEventListener('click', function(event) {
   }
 })
 
-// function deleteFromArray() {
-//   for (var i = 0; i < savedIdeas.length; i++) {
-//     if (event.target.id === savedIdeas[i].id) {
-//       var targetedIndex = savedIdeas.indexOf();
-//       savedIdeas.splice(targetedIndex, 1);
-//       console.log(savedIdeas);
-//     }
-//   }
-// }
-//
-// function deleteFromDOM(event) {
-//   document.querySelectorAll('.box').forEach(item => {
-//       item.remove('id');
-//     });
-  // var deleteButton = document.querySelector('.delete');
-  // createdIdeaCard.remove('id');
-// }
+function deleteFromArray(event) {
+  var boxToRemove = event.target.closest('.box');
+  // debugger;
+  for (var i = 0; i < savedIdeas.length; i++) {
+    console.log(typeof boxToRemove.id);
+    console.log(typeof savedIdeas[i].id);
+    if (boxToRemove.id == savedIdeas[i].id) {
+      var targetedIndex = savedIdeas.indexOf();
+      savedIdeas.splice(targetedIndex, 1);
+      console.log(savedIdeas);
+    }
+  }
+}
+
+function deleteFromDOM(event) {
+  var boxToRemove = event.target.closest('.box');
+  event.target.remove(boxToRemove);
+}
 
 function showMobileMenu() {
   mobileMenu.classList.add('purple-4');
@@ -122,7 +124,7 @@ function showUsersIdeaCard() {
     ideaGallery.innerHTML = "";
     for (var i = 0; i < savedIdeas.length; i++) {
       var ideaCardTemplate =
-      `<section class="box id=${savedIdeas[i].id}">
+      `<section class="box" id="${savedIdeas[i].id}">
         <section class="card-top">
           <input type="image" src="assets/star.svg" name="star-inactive" class="star-inactive" id="star-inactive" />
           <input type="image" src="assets/star-active.svg" name="star-active" class="star-active hide" id="star-active" />
