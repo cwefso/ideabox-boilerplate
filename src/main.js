@@ -42,6 +42,8 @@ function saveIdea(event) {
 function verifyForm() {
   if (userNewTitle.value && userNewBody.value) {
     saveIdeaButton.disabled = false;
+  } else {
+    saveIdeaButton.disabled = true;
   }
 }
 
