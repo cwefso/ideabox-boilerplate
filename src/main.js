@@ -22,12 +22,6 @@ ideaGallery.addEventListener('click', function(event) {
   var activeStarBtn = document.querySelector('.star-active');
   var inactiveStarBtn = document.querySelector('.star-inactive');
 
-  // var createdIdeaCard = document.querySelectorAll('.box');
-  // var deleteButton = document.querySelectorAll('.delete').forEach(item => {
-  //   item.addEventListener('click', event => {
-  //     ideaGallery.remove(createdIdeaCard);
-  //   })
-  // })
   if (event.target.className === 'delete') {
     deleteFromArray(event);
     deleteFromDOM(event);
@@ -37,6 +31,7 @@ ideaGallery.addEventListener('click', function(event) {
     inactiveStarBtn.classList.remove('hide');
     activeStarBtn.classList.add('hide');
   }
+
   if (event.target.className === 'star-inactive') {
     inactiveStarBtn.classList.add('hide');
     activeStarBtn.classList.remove('hide');
@@ -45,21 +40,17 @@ ideaGallery.addEventListener('click', function(event) {
 
 function deleteFromArray(event) {
   var boxToRemove = event.target.closest('.box');
-  // debugger;
+  var boxNumber = parseInt(boxToRemove.id);
   for (var i = 0; i < savedIdeas.length; i++) {
-    console.log(typeof boxToRemove.id);
-    console.log(typeof savedIdeas[i].id);
-    if (boxToRemove.id == savedIdeas[i].id) {
-      var targetedIndex = savedIdeas.indexOf();
-      savedIdeas.splice(targetedIndex, 1);
-      console.log(savedIdeas);
+    if (boxNumber === savedIdeas[i].id) {
+      savedIdeas.splice(savedIdeas.indexOf(boxNumber));
     }
   }
 }
 
 function deleteFromDOM(event) {
   var boxToRemove = event.target.closest('.box');
-  event.target.remove(boxToRemove);
+  boxToRemove.remove();
 }
 
 function showMobileMenu() {
@@ -85,9 +76,6 @@ function saveIdea(event) {
 }
 
 function verifyForm(event) {
-  // if(event.target.value) {
-    // saveIdeaButton.disabled= false;
-  // }
   if (userNewTitle.value && userNewBody.value) {
     saveIdeaButton.disabled = false;
   } else {
@@ -147,35 +135,4 @@ function showUsersIdeaCard() {
   }
 }
 
-// function toggleFavoriteStar() {
-//   event.preventDefault();
-//   var activeStarBtn = document.querySelector('.star-active');
-//   var inactiveStarBtn = document.querySelector('.star-inactive');
-//
-//   for (var i = 0; i < savedIdeas.length; i++) {
-//     inactiveStarBtn.addEventListener('click', event => {
-//       inactiveStarBtn.classList.add('hide');
-//       activeStarBtn.classList.remove('hide');
-//     });
-//     activeStarBtn.addEventListener('click', event => {
-//       inactiveStarBtn.classList.remove('hide');
-//       activeStarBtn.classList.add('hide');
-//     });
-//   }
-// }
-//
-// function deleteIdeaCard() {
-//   event.preventDefault();
-//   var deleteButton = document.querySelector('.delete');
-//   var createdIdeaCard = document.querySelector('.box');
-//
-//   ideaGallery.addEventListener('click', event => {
-//     event.target.removeChild(createdIdeaCard.id);
-//   })
 
-  // for (var i = 0; i < savedIdeas.length; i++) {
-  //   deleteButton.addEventListener('click', event => {
-  //     createdIdeaCard.remove('id');
-  //   });
-  // }
-// }
