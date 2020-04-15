@@ -11,7 +11,8 @@ var background = document.querySelector('.background');
 
 var savedIdeas = [];
 
-// window.onload = retrieveMadeIdeaCards;
+window.onload = retrieveMadeIdeaCards;
+
 menuButton.addEventListener('click', showMobileMenu);
 menuCloseButton.addEventListener('click', closeMenu);
 saveIdeaButton.addEventListener('click', saveIdea);
@@ -46,6 +47,7 @@ function toggleStarOnData() {
       savedIdeas[i].star = true;
     }
   }
+  saveIdeaToStorage()
 }
 
 function toggleStarOnDOM() {
@@ -63,6 +65,7 @@ function toggleStarOffData() {
       savedIdeas[i].star = false;
     }
   }
+  saveIdeaToStorage()
 }
 
 function toggleStarOffDOM() {
@@ -79,6 +82,7 @@ function deleteFromArray(event) {
       savedIdeas.splice(savedIdeas.indexOf(savedIdeas[i]));
     }
   }
+  saveIdeaToStorage()
 }
 
 function deleteFromDOM(event) {
@@ -122,20 +126,19 @@ function createNewIdea() {
   var currentIdea = new Idea(userNewTitle.value, userNewBody.value);
   if (userNewTitle.value && userNewBody.value) {
   savedIdeas.push(currentIdea);
+  saveIdeaToStorage();
   saveIdeaButton.disabled = true;
-  // saveIdeaToStorage();
   }
 }
 
-// function saveIdeaToStorage() {
-//   localStorage.setItem('ideas', JSON.stringify(savedIdeas));
-// }
-//
-// function retrieveMadeIdeaCards() {
-//   savedIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
-//
-//   showUsersIdeaCard();
-// }
+function saveIdeaToStorage() {
+  localStorage.setItem('ideas', JSON.stringify(savedIdeas));
+}
+
+function retrieveMadeIdeaCards() {
+  savedIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
+  showUsersIdeaCard();
+}
 
 function clearFields() {
   userNewTitle.value = "";
