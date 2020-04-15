@@ -8,6 +8,7 @@ var userForm = document.querySelector('.form');
 var userNewBody = document.querySelector('.input-body');
 var userNewTitle = document.querySelector('.input-title');
 var background = document.querySelector('.background');
+var showStarredButton = document.querySelector('.show-starred-button');
 
 var savedIdeas = [];
 
@@ -17,6 +18,11 @@ menuCloseButton.addEventListener('click', closeMenu);
 saveIdeaButton.addEventListener('click', saveIdea);
 userNewTitle.addEventListener('input', verifyForm);
 userNewBody.addEventListener('input', verifyForm);
+showStarredButton.addEventListener('click', displayStarredIdeas);
+
+function displayStarredIdeas() {
+  console.log('click');
+}
 
 ideaGallery.addEventListener('click', function(event) {
   event.preventDefault();
