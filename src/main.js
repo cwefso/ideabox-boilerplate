@@ -22,6 +22,7 @@ showStarredButton.addEventListener('click', displayStarredIdeas);
 
 function displayStarredIdeas() {
   console.log('click');
+  
 }
 
 ideaGallery.addEventListener('click', function(event) {
@@ -52,7 +53,7 @@ function toggleStarOnData() {
       savedIdeas[i].star = true;
     }
   }
-  saveIdeaToStorage();
+  saveIdeaToStorage()
 }
 
 function toggleStarOnDOM() {
@@ -70,7 +71,7 @@ function toggleStarOffData() {
       savedIdeas[i].star = false;
     }
   }
-  saveIdeaToStorage();
+  saveIdeaToStorage()
 }
 
 function toggleStarOffDOM() {
@@ -87,7 +88,7 @@ function deleteFromArray(event) {
       savedIdeas.splice(savedIdeas.indexOf(savedIdeas[i]));
     }
   }
-  saveIdeaToStorage();
+  saveIdeaToStorage()
 }
 
 function deleteFromDOM(event) {
@@ -131,8 +132,8 @@ function createNewIdea() {
   var currentIdea = new Idea(userNewTitle.value, userNewBody.value);
   if (userNewTitle.value && userNewBody.value) {
   savedIdeas.push(currentIdea);
-  saveIdeaButton.disabled = true;
   saveIdeaToStorage();
+  saveIdeaButton.disabled = true;
   }
 }
 
@@ -142,7 +143,6 @@ function saveIdeaToStorage() {
 
 function retrieveMadeIdeaCards() {
   savedIdeas = JSON.parse(localStorage.getItem('ideas')) || [];
-
   showUsersIdeaCard();
 }
 
