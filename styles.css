@@ -345,6 +345,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 2;
+  }
+
+  .gray-1 {
+    background: darkgray;
+    height: 100%;
+    width: 100%;
+    opacity: 80%;
+    z-index: 1;
+    position: absolute;
   }
 
   .mobile-menu-body-text {
@@ -358,6 +368,7 @@ body {
 
   .menu-body-mobile {
     border: none;
+    z-index: 2;
   }
 
   .idea-form {

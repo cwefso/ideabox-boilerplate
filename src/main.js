@@ -7,6 +7,7 @@ var saveIdeaButton = document.querySelector('.form-button');
 var userForm = document.querySelector('.form');
 var userNewBody = document.querySelector('.input-body');
 var userNewTitle = document.querySelector('.input-title');
+var background = document.querySelector('.background');
 
 var savedIdeas = [];
 
@@ -67,6 +68,7 @@ function showMobileMenu() {
   mobileMenuBody.classList.add('menu-body-mobile');
   menuButton.classList.add('hide');
   menuCloseButton.classList.remove('hide');
+  background.classList.add('gray-1');
 }
 
 function closeMenu() {
@@ -74,6 +76,7 @@ function closeMenu() {
   mobileMenuBody.classList.remove('menu-body-mobile');
   menuButton.classList.remove('hide');
   menuCloseButton.classList.add('hide');
+  background.classList.remove('gray-1');
 }
 
 function saveIdea(event) {
