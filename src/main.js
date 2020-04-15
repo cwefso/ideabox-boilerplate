@@ -13,7 +13,6 @@ var starredIdeaButton = document.querySelector('.show-starred-button');
 var savedIdeas = [];
 
 window.onload = retrieveMadeIdeaCards;
-
 menuButton.addEventListener('click', showMobileMenu);
 menuCloseButton.addEventListener('click', closeMenu);
 saveIdeaButton.addEventListener('click', saveIdea);
@@ -93,24 +92,25 @@ function deleteFromDOM(event) {
 }
 
 function displayStarredIdeas() {
-    ideaGallery.innerHTML = ""
+    ideaGallery.innerHTML = "";
+    starredIdeaButton.innerText = "Show All Ideas";
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
       var starredIdeaCards =
-    `<section class="box" id="${savedIdeas[i].id}">
-      <section class="card-top">
-        <input type="image" src="assets/star-active.svg" name="star" class="star-active" id="star" />
-        <input type="image" src="assets/delete.svg" name="delete" class="delete" id="delete" align="right"/>
-      </section>
-      <section class="card-body">
-        <p class= "card-header">${savedIdeas[i].title}</p>
-        <p class= "card-text">${savedIdeas[i].body}</p>
+      `<section class="box" id="${savedIdeas[i].id}">
+        <section class="card-top">
+          <input type="image" src="assets/star-active.svg" name="star" class="star-active" id="star" />
+          <input type="image" src="assets/delete.svg" name="delete" class="delete" id="delete" align="right"/>
         </section>
-        <section class="card-bottom">
-          <input type="image" src="assets/comment.svg" name="comment" class="comment" id="comment" align="left"/>
-          <p class= "comment-text">Comment</p>
-        </section>
-    </section>`;
+        <section class="card-body">
+          <p class= "card-header">${savedIdeas[i].title}</p>
+          <p class= "card-text">${savedIdeas[i].body}</p>
+          </section>
+          <section class="card-bottom">
+            <input type="image" src="assets/comment.svg" name="comment" class="comment" id="comment" align="left"/>
+            <p class= "comment-text">Comment</p>
+          </section>
+      </section>`;
     ideaGallery.insertAdjacentHTML('afterbegin', starredIdeaCards);
     }
   }
