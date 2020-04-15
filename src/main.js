@@ -18,7 +18,17 @@ menuCloseButton.addEventListener('click', closeMenu);
 saveIdeaButton.addEventListener('click', saveIdea);
 userNewTitle.addEventListener('input', verifyForm);
 userNewBody.addEventListener('input', verifyForm);
-starredIdeaButton.addEventListener('click', displayStarredIdeas);
+var timesClicked = 0;
+starredIdeaButton.addEventListener('click', function() {
+  timesClicked++;
+  if(timesClicked%2==0) {
+    starredIdeaButton.innerText = "Show Starred Ideas";
+    showUsersIdeaCard();
+  } else {
+    starredIdeaButton.innerText = "Show All Ideas";
+    displayStarredIdeas();
+  }
+});
 
 ideaGallery.addEventListener('click', function(event) {
   event.preventDefault();
@@ -93,7 +103,6 @@ function deleteFromDOM(event) {
 
 function displayStarredIdeas() {
     ideaGallery.innerHTML = "";
-    starredIdeaButton.innerText = "Show All Ideas";
   for (var i = 0; i < savedIdeas.length; i++) {
     if (savedIdeas[i].star === true) {
       var starredIdeaCards =
