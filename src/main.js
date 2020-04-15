@@ -20,31 +20,63 @@ userNewBody.addEventListener('input', verifyForm);
 
 ideaGallery.addEventListener('click', function(event) {
   event.preventDefault();
-  var activeStarBtn = document.querySelector('.star-active');
-  var inactiveStarBtn = document.querySelector('.star-inactive');
 
   if (event.target.className === 'delete') {
     deleteFromArray(event);
     deleteFromDOM(event);
   }
 
-  if (event.target.className === 'star-active') {
-    inactiveStarBtn.classList.remove('hide');
-    activeStarBtn.classList.add('hide');
-  }
-
   if (event.target.className === 'star-inactive') {
-    inactiveStarBtn.classList.add('hide');
-    activeStarBtn.classList.remove('hide');
+    toggleStarOnData(event);
+    toggleStarOnDOM(event);
+    console.log(savedIdeas);
+  } else if (event.target.className === 'star-active') {
+    toggleStarOffData(event);
+    toggleStarOffDOM(event);
+    console.log(savedIdeas);
   }
 })
 
+function toggleStarOnData() {
+  var clickedStar = event.target.closest('.box');
+  var starIdNumber = parseInt(clickedStar.id);
+
+  for (var i = 0; i < savedIdeas.length; i++) {
+    if (starIdNumber === savedIdeas[i].id) {
+      savedIdeas[i].star = true;
+    }
+  }
+}
+
+function toggleStarOnDOM() {
+  var starImg = event.target;
+  starImg.src = "assets/star-active.svg";
+  starImg.className = "star-active";
+}
+
+function toggleStarOffData() {
+  var clickedStar = event.target.closest('.box');
+  var starIdNumber = parseInt(clickedStar.id);
+
+  for (var i = 0; i < savedIdeas.length; i++) {
+    if (starIdNumber === savedIdeas[i].id) {
+      savedIdeas[i].star = false;
+    }
+  }
+}
+
+function toggleStarOffDOM() {
+  var starImg = event.target;
+  starImg.src = "assets/star.svg";
+  starImg.className = "star-inactive";
+}
+
 function deleteFromArray(event) {
   var boxToRemove = event.target.closest('.box');
-  var boxNumber = parseInt(boxToRemove.id);
+  var boxIndexNumber = parseInt(boxToRemove.id);
   for (var i = 0; i < savedIdeas.length; i++) {
-    if (boxNumber === savedIdeas[i].id) {
-      savedIdeas.splice(savedIdeas.indexOf(boxNumber));
+    if (boxIndexNumber === savedIdeas[i].id) {
+      savedIdeas.splice(savedIdeas.indexOf(savedIdeas[i]));
     }
   }
 }
@@ -114,11 +146,19 @@ function showUsersIdeaCard() {
   if (savedIdeas.length) {
     ideaGallery.innerHTML = "";
     for (var i = 0; i < savedIdeas.length; i++) {
+
+      if (savedIdeas[i].star === false) {
+        var visibleStar = "assets/star.svg";
+        var starClassName = "star-inactive";
+      } else if (savedIdeas[i].star === true){
+        visibleStar = "assets/star-active.svg";
+        starClassName = "star-active";
+      }
+
       var ideaCardTemplate =
       `<section class="box" id="${savedIdeas[i].id}">
         <section class="card-top">
-          <input type="image" src="assets/star.svg" name="star-inactive" class="star-inactive" id="star-inactive" />
-          <input type="image" src="assets/star-active.svg" name="star-active" class="star-active hide" id="star-active" />
+          <input type="image" src=${visibleStar} name="star" class=${starClassName} id="star" />
           <input type="image" src="assets/delete.svg" name="delete" class="delete" id="delete" align="right"/>
         </section>
         <section class="card-body">
@@ -131,11 +171,6 @@ function showUsersIdeaCard() {
           </section>
       </section>`;
       ideaGallery.insertAdjacentHTML('afterbegin', ideaCardTemplate);
-
-      // deleteIdeaCard();
-      // toggleFavoriteStar();
     }
   }
 }
-
-
