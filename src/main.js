@@ -25,49 +25,50 @@ ideaGallery.addEventListener('click', function(event) {
     deleteFromDOM(event);
   }
 
-  // if (event.target.className === 'star-active') {
-  //   event.target.star = false;
-  //   // var starImg = event.target.star;
-  //   // starImg.src = starImg.src.match("assets/star.svg") ?
-  //   // "assets/star-active.svg" : "assets/star.svg";
-  //   showUsersIdeaCard();
-  //   // inactiveStarBtn.classList.remove('hide');
-  //   // activeStarBtn.classList.add('hide');
-  // }
-
   if (event.target.className === 'star-inactive') {
-    var clickedStar = event.target.closest('.box').id;
-
-    for (var i = 0; i < savedIdeas.length; i++) {
-      console.log(clickedStar, savedIdeas[i].id);
-      if (clickedStar == savedIdeas[i].id) {
-        savedIdeas[i].star = true;
-      }
-    }
+    toggleStarOnData(event);
+    toggleStarOnDOM(event);
     console.log(savedIdeas);
-    var starImg = event.target;
-    starImg.src = "assets/star-active.svg";
-    starImg.className = "star-active";
-    showUsersIdeaCard(event);
-  }
-
-  if (event.target.className === 'star-active') {
-    var clickedStar = event.target.closest('.box').id;
-
-    for (var i = 0; i < savedIdeas.length; i++) {
-      console.log(clickedStar, savedIdeas[i].id);
-      if (clickedStar == savedIdeas[i].id) {
-        savedIdeas[i].star = true;
-      }
-    }
+  } else if (event.target.className === 'star-active') {
+    toggleStarOffData(event);
+    toggleStarOffDOM(event);
     console.log(savedIdeas);
-    var starImg = event.target;
-    starImg.src = "assets/star-inactive.svg";
-    starImg.className = "star-inactive";
-    showUsersIdeaCard(event);
   }
 })
 
+function toggleStarOnData() {
+  var clickedStar = event.target.closest('.box');
+  var starIdNumber = parseInt(clickedStar.id);
+
+  for (var i = 0; i < savedIdeas.length; i++) {
+    if (starIdNumber === savedIdeas[i].id) {
+      savedIdeas[i].star = true;
+    }
+  }
+}
+
+function toggleStarOnDOM() {
+  var starImg = event.target;
+  starImg.src = "assets/star-active.svg";
+  starImg.className = "star-active";
+}
+
+function toggleStarOffData() {
+  var clickedStar = event.target.closest('.box');
+  var starIdNumber = parseInt(clickedStar.id);
+
+  for (var i = 0; i < savedIdeas.length; i++) {
+    if (starIdNumber === savedIdeas[i].id) {
+      savedIdeas[i].star = false;
+    }
+  }
+}
+
+function toggleStarOffDOM() {
+  var starImg = event.target;
+  starImg.src = "assets/star.svg";
+  starImg.className = "star-inactive";
+}
 
 function deleteFromArray(event) {
   var boxToRemove = event.target.closest('.box');
