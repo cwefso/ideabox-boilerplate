@@ -229,10 +229,7 @@ body {
 
 .box {
   background: #FFFFFF;
-  border-color: #1F1F3D;
-  border-width: 1px;
-  border-width: 1px;
-  border: solid;
+  border: 2px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -295,11 +292,6 @@ body {
   height: 55px;
   }
 
-.box {
-  border-color: #1F1F3D;
-  border-width: 1px;
-  border: 1px solid;
-  }
 
 @media only screen and (max-width: 600px) {
   body {
