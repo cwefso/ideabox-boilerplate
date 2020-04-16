@@ -34,20 +34,20 @@ body {
 
 /*=== Fonts ===*/
 
-.title-text,
+.card-header,
+.comment-text,
 .form-body-text,
 .formbutton,
 .header-text,
-.card-header,
-.comment-text,
 .menu-body-text,
-.show-starred-button {
+.show-starred-button,
+.title-text {
   font-family: 'Open Sans';
   font-weight: bold;
 }
 
-.header-text,
-.comment-text {
+.comment-text,
+.header-text {
   color: #EAEAF4;
 }
 
@@ -62,8 +62,8 @@ body {
   padding: 6px;
 }
 
-.card-text,
 .body-text,
+.card-text,
 ::placeholder {
   font-family: 'Open Sans';
   font-weight: light;
@@ -147,8 +147,8 @@ body {
   width: 50%;
 }
 
-.input-title,
 .input-body,
+.input-title,
 .form-button,
 .search-box {
   border-radius: 4px;
@@ -271,6 +271,12 @@ body {
 /*=== media queries ===*/
 @media only screen and (max-width: 1100px) {
 
+  .box {
+    border: solid;
+    border-color: #1F1F3D;
+    border-width: 1px;
+  }
+
   .card-grid {
   display: grid;
   grid-gap: 15px;
@@ -293,7 +299,6 @@ body {
   border-width: 1px;
   border: solid;
   }
-}
 
 @media only screen and (max-width: 600px) {
   body {
@@ -364,6 +369,18 @@ body {
 
   .menu-body-mobile {
     border: none;
+    z-index: 2;
+  }
+  
+  .purple-4 {
+    background: #1F1F3D;
+    height: 180px;
+    width: 100%;
+    position: absolute;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     z-index: 2;
   }
 
