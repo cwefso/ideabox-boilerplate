@@ -116,6 +116,7 @@ body {
   height: 4vh;
   min-height: 25px;
   width: 95%;
+  min-width: 200px;
 }
 
 .hide {
@@ -297,7 +298,7 @@ body {
 .box {
   border-color: #1F1F3D;
   border-width: 1px;
-  border: solid;
+  border: 1px solid;
   }
 
 @media only screen and (max-width: 600px) {
@@ -371,7 +372,7 @@ body {
     border: none;
     z-index: 2;
   }
-  
+
   .purple-4 {
     background: #1F1F3D;
     height: 180px;
